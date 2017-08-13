@@ -28,4 +28,12 @@ public class AppView {
         System.out.print("Edge를 입력:");
         return new DirectedEdge(this._scanner.nextInt(), this._scanner.nextInt());
     }
+
+    public void showGraph(AdjacencyListDirectedGraph graph) {
+        int numOfVertex = graph.get_numOfVertices();
+        for(int i =0; i<numOfVertex; i++)
+        {
+            AdjacencyListDirectedGraph.AdjacencyListDirectedGrahpIterator iterator = graph.graphIterator(i);
+        }
+    }
 }

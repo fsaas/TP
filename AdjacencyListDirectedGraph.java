@@ -10,6 +10,10 @@ public class AdjacencyListDirectedGraph {
         }
     }
 
+    public int get_numOfVertices() {
+        return _numOfVertices;
+    }
+
     public boolean addEdge(DirectedEdge givenEdge) {
         int tailVertex = givenEdge.get_tailVertex();
         int headVertex = givenEdge.get_headVertex();
@@ -49,5 +53,39 @@ public class AdjacencyListDirectedGraph {
             }
         }
         return false;
+    }
+
+    public AdjacencyListDirectedGrahpIterator graphIterator(int i){
+        return new AdjacencyListDirectedGrahpIterator(1);
+    }
+
+    public class AdjacencyListDirectedGrahpIterator{
+        private int _currentPosition;
+        private Node<Integer> header;
+
+        public AdjacencyListDirectedGrahpIterator(int i) {
+            this._currentPosition = 0;
+            header = _listDirectedGraph[i];
+        }
+
+        public boolean hasNext()
+        {
+            Node<Integer> finder = header;
+            for(int i = 0; i<this._currentPosition; i++)
+            {
+                finder = finder.get_next();
+            }
+            return finder.get_next() != null;
+        }
+
+        public int next()
+        {
+            Node<Integer> finder = header;
+            for(int i = 0; i<this._currentPosition; i++)
+            {
+                finder = finder.get_next();
+            }
+            return finder.get_element();
+        }
     }
 }

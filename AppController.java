@@ -27,6 +27,7 @@ public class AppController {
 
     private void showGraph()
     {
+        this._appView.showGraph(this._graph);
 
     }
 
