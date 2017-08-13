@@ -1,33 +1,41 @@
 public class AdjacencyListDirectedGraph {
-    private Node<DirectedEdge>[] _listDirectedGraph;
+    private Node<Integer>[] _listDirectedGraph;
     private int _numOfVertices;
     public AdjacencyListDirectedGraph(int numOfVertex) {
-        this._listDirectedGraph = (Node<DirectedEdge>[]) new Object[numOfVertex];
+        this._listDirectedGraph = (Node<Integer>[]) new Object[numOfVertex];
         this._numOfVertices = numOfVertex;
         for(int i = 0; i<numOfVertex; i++)
         {
-            this._listDirectedGraph[i] = new Node<DirectedEdge>();
+            this._listDirectedGraph[i] = new Node<Integer>();
         }
     }
 
     public boolean addEdge(DirectedEdge givenEdge) {
+        int tailVertex = givenEdge.get_tailVertex();
+        int headVertex = givenEdge.get_headVertex();
+        Node<Integer> header =  this._listDirectedGraph[tailVertex];
+        Node<Integer> newNode = new Node<Integer>(tailVertex);
         if(isVertexValid(givenEdge)){
             if(doesEdgeExist(givenEdge)){
-
+               newNode.set_next(header.get_next());
+               header.set_next(newNode);
+               return true;
             }
         }
+        return false;
     }
 
     private boolean doesEdgeExist(DirectedEdge givenEdge) {
         int tailVertex = givenEdge.get_tailVertex();
         int headVertex = givenEdge.get_headVertex();
-        Node<DirectedEdge> finder =  this._listDirectedGraph[tailVertex];
-        while(finder != null)
+        Node<Integer> header = this._listDirectedGraph[tailVertex];
+        Node<Integer> currentNode = header.get_next();
+        while(currentNode != null)
         {
-            if(Integer.valueOf(String.valueOf(finder.get_element())) == headVertex)
+            if(Integer.valueOf(String.valueOf(currentNode.get_element())) == headVertex)
                 return true;
             else
-                finder = finder.get_next();
+                currentNode = currentNode.get_next();
         }
         return false;
     }
