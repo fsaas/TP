@@ -25,14 +25,16 @@ public class AppController {
     private void showSortedList() {
     }
 
-    private void showGraph() {
+    private void showGraph()
+    {
+
     }
 
     private boolean inputAndMakeGraph() {
         int numOfVertex = this._appView.getNumOfVertex();
         int numOfEdge = this._appView.getNumOfEdge();
         int count = 0;
-        this._graph = new AdjacencyListDirectedGraph(numOfVertex, numOfEdge);
+        this._graph = new AdjacencyListDirectedGraph(numOfVertex);
 
         while(count < numOfEdge)
         {

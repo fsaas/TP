@@ -24,6 +24,8 @@ public class AppView {
         return this._scanner.nextInt();
     }
 
-    public Object inputEdge() {
+    public DirectedEdge inputEdge() {
+        System.out.print("Edge를 입력:");
+        return new DirectedEdge(this._scanner.nextInt(), this._scanner.nextInt());
     }
 }
