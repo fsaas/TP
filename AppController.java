@@ -21,4 +21,28 @@ public class AppController {
             this._appView.outputMessage(MessageID.Error_FailInputGraph);
         }
     }
+
+    private void showSortedList() {
+    }
+
+    private void showGraph() {
+    }
+
+    private boolean inputAndMakeGraph() {
+        int numOfVertex = this._appView.getNumOfVertex();
+        int numOfEdge = this._appView.getNumOfEdge();
+        int count = 0;
+        this._graph = new AdjacencyListDirectedGraph(numOfVertex, numOfEdge);
+
+        while(count < numOfEdge)
+        {
+            if(this._graph.addEdge(this._appView.inputEdge()))
+            {
+                count++;
+            }else{
+                this._appView.outputMessage(MessageID.Error_WrongEdge);
+            }
+        }
+        return count == numOfEdge;
+    }
 }
