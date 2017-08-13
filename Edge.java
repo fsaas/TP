@@ -6,4 +6,12 @@ public class Edge {
         this._tailVertex = tailVertex;
         this._headVertex = headVertex;
     }
+
+    public int get_tailVertex() {
+        return _tailVertex;
+    }
+
+    public int get_headVertex() {
+        return _headVertex;
+    }
 }
