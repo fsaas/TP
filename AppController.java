@@ -39,10 +39,12 @@ public class AppController {
 
         while(count < numOfEdge)
         {
+            System.out.print(count);
             if(this._graph.addEdge(this._appView.inputEdge()))
             {
                 count++;
             }else{
+                System.out.print(count);
                 this._appView.outputMessage(MessageID.Error_WrongEdge);
             }
         }

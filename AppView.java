@@ -11,7 +11,13 @@ public class AppView {
     public void outuptMessage(MessageID notice_endProgram) {
     }
 
-    public void outputMessage(MessageID error_failInputGraph) {
+    public void outputMessage(MessageID givenMessage) {
+        switch (givenMessage)
+        {
+            case Error_WrongEdge:
+                System.out.print("잘못된 Edge");
+                break;
+        }
     }
 
     public int getNumOfVertex() {
@@ -34,6 +40,19 @@ public class AppView {
         for(int i =0; i<numOfVertex; i++)
         {
             AdjacencyListDirectedGraph.AdjacencyListDirectedGrahpIterator iterator = graph.graphIterator(i);
+            System.out.print("["+ i +"] ");
+            for(int j = 0; j < numOfVertex; j++)
+            {
+                if(iterator.hasNext())
+                {
+                    System.out.print(iterator.next().get_headVertex()+ " ");
+                }
+            }
+            this.outputBlankLine();
         }
+    }
+
+    private void outputBlankLine() {
+        System.out.println();
     }
 }

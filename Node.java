@@ -2,15 +2,16 @@ public class Node<T> {
     private T _element;
     private Node<T> _next;
 
-    public Node(T tailVertex) {
-    }
-
     public Node() {
 
     }
 
+    public Node(int tailVertex, int headVertex) {
+        this._element = (T) new DirectedEdge(tailVertex, headVertex);
+    }
+
     public T get_element() {
-        return _element;
+        return this._element;
     }
 
     public Node<T> get_next() {
