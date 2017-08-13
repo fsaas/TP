@@ -1,9 +1,13 @@
 public class AdjacencyListDirectedGraph {
-    private Node<T>[] _listDirectedGraph;
+    private Node<DirectedEdge>[] _listDirectedGraph;
     private int _numOfVertices;
     public AdjacencyListDirectedGraph(int numOfVertex) {
-        this._listDirectedGraph = (Node<T>) new Object[numOfVertex];
-        this._numOfVertices = numOfVertex;_
+        this._listDirectedGraph = (Node<DirectedEdge>[]) new Object[numOfVertex];
+        this._numOfVertices = numOfVertex;
+        for(int i = 0; i<numOfVertex; i++)
+        {
+            this._listDirectedGraph[i] = new Node<DirectedEdge>();
+        }
     }
 
     public boolean addEdge(DirectedEdge givenEdge) {
@@ -15,6 +19,17 @@ public class AdjacencyListDirectedGraph {
     }
 
     private boolean doesEdgeExist(DirectedEdge givenEdge) {
+        int tailVertex = givenEdge.get_tailVertex();
+        int headVertex = givenEdge.get_headVertex();
+        Node<DirectedEdge> finder =  this._listDirectedGraph[tailVertex];
+        while(finder != null)
+        {
+            if(Integer.valueOf(String.valueOf(finder.get_element())) == headVertex)
+                return true;
+            else
+                finder = finder.get_next();
+        }
+        return false;
     }
 
     private boolean isVertexValid(DirectedEdge givenEdge) {
