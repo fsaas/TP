@@ -59,7 +59,7 @@ public class AdjacencyListDirectedGraph {
     }
 
     public AdjacencyListDirectedGrahpIterator graphIterator(int i) {
-        return new AdjacencyListDirectedGrahpIterator(1);
+        return new AdjacencyListDirectedGrahpIterator(i);
     }
 
     public class AdjacencyListDirectedGrahpIterator {
@@ -79,13 +79,13 @@ public class AdjacencyListDirectedGraph {
             return finder.get_next() != null;
         }
 
-        public DirectedEdge next() {
+        public Node<DirectedEdge> next() {
             Node<DirectedEdge> finder = header;
             for (int i = 0; i < this._currentPosition; i++) {
                 finder = finder.get_next();
             }
             this._currentPosition++;
-            return finder.get_next().get_element();
+            return finder.get_next();
         }
     }
 }

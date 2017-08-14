@@ -45,7 +45,7 @@ public class AppView {
             {
                 if(iterator.hasNext())
                 {
-                    System.out.print(iterator.next().get_headVertex()+ " ");
+                    System.out.print(iterator.next().get_element().get_headVertex()+ " ");
                 }
             }
             this.outputBlankLine();
