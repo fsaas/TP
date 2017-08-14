@@ -1,2 +1,4 @@
-public class ArrayStack {
+public class ArrayStack<Element> {
+    public ArrayStack(Element numOfVerticesInGraph) {
+    }
 }
