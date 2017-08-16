@@ -28,6 +28,7 @@ public class ArrayStack<Element> {
             return false;
         }
         else{
+            this._top++;
             this._elements[this._top] = anElement;
             return true;
         }
@@ -58,7 +59,7 @@ public class ArrayStack<Element> {
         }
         public Element next()
         {
-           return _elements[_top];
+           return _elements[_top++];
         }
     }
 }
