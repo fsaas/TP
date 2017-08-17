@@ -55,4 +55,12 @@ public class AppView {
     private void outputBlankLine() {
         System.out.println();
     }
+
+    public void showSortedList(TopologicalSort topologicalSort) {
+        ArrayList<Integer> sortedList = topologicalSort.sortedList();
+        ArrayList.ArrayListIterator iterator = sortedList.arrayListIterator();
+        System.out.println("! Topological Sort의 결과는 다음과 같습니다.");
+        while(iterator.hasNext())
+            System.out.print(iterator.next());
+    }
 }

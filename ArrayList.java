@@ -3,6 +3,12 @@ public class ArrayList<T> {
     private int _size;
     private int _maxSize;
 
+    public ArrayList(AdjacencyListDirectedGraph graph) {
+        this._element = (T[]) new Object[graph.get_numOfVertices()];
+        this._size = 0;
+        this._maxSize = graph.get_numOfVertices();
+    }
+
     public boolean isFull()
     {
         return this._size == this._maxSize;
@@ -23,8 +29,8 @@ public class ArrayList<T> {
             return false;
         }
         else{
-            this._size++;
             this._element[this._size] = anElement;
+            this._size++;
             return true;
         }
     }
@@ -37,7 +43,7 @@ public class ArrayList<T> {
 
         public boolean hasNext()
         {
-            return this._currentPosition == _size;
+            return this._currentPosition < _size;
         }
         public T next()
         {

@@ -7,10 +7,37 @@ public class TopologicalSort {
     public TopologicalSort(AdjacencyListDirectedGraph graph) {
         this._graph = graph;
         createAndSetPredecessorCount();
-        int numOfVerticesInGraph = graph.get_numOfVertices();
-        this._zeroCountVertices = new ArrayStack<Integer>(numOfVerticesInGraph);
+        this._zeroCountVertices = new ArrayStack<Integer>(this._graph);
         pushVerticesWithNoPredecessors();
-        this._sortedList = new ArrayList<Integer>();
+        this._sortedList = new ArrayList<Integer>(graph);
+    }
+
+    private void pushVerticesWithNoPredecessors() {
+        for(int target = 0; target<this._graph.get_numOfVertices(); target++){
+            if(this._predecessorCount[target] == 0){
+                this._zeroCountVertices.push(target);
+            }
+        }
+    }
+
+    private void createAndSetPredecessorCount() {
+        this._predecessorCount = new int[this._graph.get_numOfVertices()];
+        int countForPredecessor;
+        for(int target =0 ; target<this._graph.get_numOfVertices(); target++)
+        {
+            countForPredecessor = 0;
+            for(int finder = 0; finder<this._graph.get_numOfVertices(); finder++)
+            {
+                AdjacencyListDirectedGraph.AdjacencyListDirectedGrahpIterator iterator = this._graph.graphIterator(finder);
+                while(iterator.hasNext())
+                {
+                    if(iterator.next().get_element().get_headVertex() == target){
+                         countForPredecessor++;
+                    }
+                }
+            }
+            this._predecessorCount[target] = countForPredecessor;
+        }
     }
 
     public ArrayList sortedList()
@@ -18,7 +45,7 @@ public class TopologicalSort {
         return this._sortedList;
     }
 
-    public void perform() {
+    public boolean perform() {
         int tailVertex, headVertex;
         showPredecessorCount();
         while(!this._zeroCountVertices.isEmpty())
@@ -38,5 +65,21 @@ public class TopologicalSort {
             showZeroCountVertices();
         }
         return (this._sortedList.size() == this._graph.get_numOfVertices());
+    }
+
+    private void showZeroCountVertices() {
+        System.out.print("- 출력 가능한 vertex 들의 stack :");
+        System.out.print("<Top>");
+        ArrayStack.ArrayStackIterator iterator = this._zeroCountVertices.arrayStackIterator();
+        if(iterator.hasNext())
+            System.out.print(iterator.next());
+        System.out.print("<Bottom>");
+    }
+
+    private void showPredecessorCount() {
+        System.out.println("- 각 vertex의 선행 vertex 수 :");
+        for(int i = 0; i<this._graph.get_numOfVertices();i++){
+            System.out.println("["+i+"] "+ this._predecessorCount[i]);
+        }
     }
 }

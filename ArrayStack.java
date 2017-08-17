@@ -4,19 +4,19 @@ public class ArrayStack<Element> {
     private int _top;
     private Element[] _elements;
 
-    public ArrayStack(Element numOfVerticesInGraph) {
-        this._maxSize = (int) numOfVerticesInGraph;
-        this._top = 0;
+    public ArrayStack(AdjacencyListDirectedGraph graph) {
+        this._maxSize = graph.get_numOfVertices();
         this._elements = (Element[]) new Object[this._maxSize];
+        this._top = -1;
     }
 
     public boolean isEmpty()
     {
-        return this._top == 0;
+        return this._top == -1;
     }
     public boolean isFull()
     {
-        return this._top == this._maxSize;
+        return this._top == this._maxSize-1;
     }
     public int length()
     {
@@ -55,11 +55,11 @@ public class ArrayStack<Element> {
 
         public boolean hasNext()
         {
-           return this._currentPosition < _top;
+           return this._currentPosition <= _top;
         }
         public Element next()
         {
-           return _elements[_top++];
+           return _elements[this._currentPosition++];
         }
     }
 }

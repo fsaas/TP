@@ -23,6 +23,7 @@ public class AppController {
     }
 
     private void showSortedList() {
+        this._appView.showSortedList(this._topologicalSort);
     }
 
     private void showGraph()
